@@ -1,0 +1,23 @@
+<header>
+  <button class="float-right nav-button button button-clear" (click)="switchFilter()">
+    <i class="fas fa-cogs" style="color: white;"></i>
+  </button>
+</header>
+
+<section *ngIf="filterIsOpen" class="animated slideInDown">
+  <form>
+    <fieldset>
+      <label for="amount">Anzahl Bilder</label>
+      <input type="number" name="amount" [(ngModel)]="query.$per_page">
+      <label for="tags">Bild Tags</label>
+      <tag-input [(ngModel)]='query.$imageTags' name="imageTags"></tag-input>
+      <label for="time">Ab Erstellungsdatum</label>
+      <input type="date" name="min_taken_date" [(ngModel)]="query.$min_taken_date">
+      <button class="button" (click)="search()">Suchen</button>
+    </fieldset>
+  </form>
+</section>
+
+<div class="gallery container">
+  <img src="{{photo.$url}}" *ngFor="let photo of photos">
+</div>
